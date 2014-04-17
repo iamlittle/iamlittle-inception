@@ -1,5 +1,4 @@
 ##fibDemo
-=======
 
 This project is a personal sandbox for learning how Docker works, how to do service discovery between Docker containers,
 and how to make the system play nice with Vagrant.
