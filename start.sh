@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-#ensure proper shutdown and removal of fib containers
-./stop.sh
+#get current directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+#stop and remove any running fibDemo containers
+$DIR/stop.sh
 
 #start the fibservice in background
 docker run -d --name fibservice fibservice
