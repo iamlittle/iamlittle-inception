@@ -17,6 +17,7 @@ apt-get install -y ipython-notebook
 
 #install flask
 pip install flask
+pip install ipdb
 
 #install java
 # apt-get purge openjdk* 
