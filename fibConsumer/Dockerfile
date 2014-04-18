@@ -13,13 +13,8 @@ RUN apt-get update
 
 RUN apt-get install -y curl
 
-ADD fibConsumer.py /usr/local/src/fibConsumer/fibConsumer.py
+RUN mkdir /usr/local/src/fibconsumer
+WORKDIR /usr/local/src/fibconsumer
+ADD fibConsumer.py /usr/local/src/fibconsumer/
 
-# Launch fibConsumer
-CMD ["python", "/usr/local/src/fibConsumer/fibConsumer.py"]
-
-# run fibConsumer as the daemon user
-USER daemon
-
-# expose fibConsumer port
-EXPOSE 5000
+CMD ["python", "/usr/local/src/fibconsumer/fibConsumer.py"]
