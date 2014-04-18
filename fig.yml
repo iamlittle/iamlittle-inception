@@ -1,0 +1,12 @@
+fibservice:
+  build: ./fibservice/
+  expose:
+    - "5001"
+fibconsumer:
+  build: ./fibconsumer/
+  expose:
+    - "5000"
+  ports:
+    - "80:5000"
+  links:
+    - fibservice:fib

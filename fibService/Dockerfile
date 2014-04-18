@@ -11,14 +11,11 @@ MAINTAINER Aaron Little alittle@opalytics.com
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 
-ADD fibService.py /usr/local/src/fibService/fibService.py
-ADD opalytics_www_utils/ /usr/local/src/fibService/opalytics_www_utils/
+RUN mkdir /usr/local/src/fibservice
+WORKDIR /usr/local/src/fibservice
 
-# Launch fibService
-CMD ["python", "/usr/local/src/fibService/fibService.py"]
+ADD fibService.py /usr/local/src/fibservice/fibService.py
+ADD opalytics_www_utils/ /usr/local/src/fibservice/opalytics_www_utils/
 
-# run fibService as the daemon user
-USER daemon
 
-# expose fibService port
-EXPOSE 5001
+CMD ["python", "/usr/local/src/fibservice/fibService.py"]

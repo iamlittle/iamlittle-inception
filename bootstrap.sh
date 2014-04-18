@@ -10,32 +10,13 @@ apt-get install -y lxc-docker
 
 # add vagrant user to docker group
 usermod -aG docker vagrant
+apt-get install -y unzip
 
-#install pip, and ipython
-apt-get install -y python-pip
-apt-get install -y ipython-notebook
+if [ ! -f "$HOME/bin/fig" ] ; then
+    wget https://github.com/orchardup/fig/releases/download/0.3.2/linux 
+    mv ./linux /usr/bin/fig
+    chmod +x /usr/bin/fig
 
-#install flask
-pip install flask
-pip install ipdb
-
-#install java
-# apt-get purge openjdk* 
-# echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-# add-apt-repository -y ppa:webupd8team/java
-# apt-get -y update 
-# apt-get install -y oracle-java8-installer
-# apt-get install -y ant 
-
-# #install play
-# apt-get install -y unzip
-# if [ -f "$HOME/bin/play" ] ; then
-#     wget http://downloads.typesafe.com/play/2.2.2/play-2.2.2.zip
-#     unzip play-2.2.2.zip
-#     chmod +x play-2.2.2/play
-#     mkdir bin
-#     ln -s play-2.2.2/play bin/play
-# fi
-
+fi
 
 
