@@ -1,5 +1,6 @@
 import urllib2
 import os
+import sys
 from flask import Flask
 from flask import jsonify
 
@@ -7,12 +8,9 @@ app = Flask(__name__)
 
 @app.route("/", methods = ['GET'])
 def index():
-    fibport = os.getenv('FIB_PORT', 'http://localhost:5001')
-    print fibport
-    fibsplit = fibport.split('://')
-    print fibsplit
-    url = 'http://%s/fib' % fibsplit[1]
-    print url
+    fibip = os.popen("/usr/bin/serf members -tag role=fibservice | awk {'print $2'} | cut -d':' -f1")
+    fibipstr = fibip.read()
+    url = 'http://%s:5001/fib' % fibipstr
     response = urllib2.urlopen(url)
     html = response.read()
     return "Hello from fibConsumer! fibService says %s" % html

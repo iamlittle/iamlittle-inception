@@ -12,11 +12,16 @@ apt-get install -y lxc-docker
 usermod -aG docker vagrant
 apt-get install -y unzip
 
-if [ ! -f "$HOME/bin/fig" ] ; then
+if [ ! -f "/usr/bin/fig" ] ; then
     wget https://github.com/orchardup/fig/releases/download/0.3.2/linux 
     mv ./linux /usr/bin/fig
     chmod +x /usr/bin/fig
-
 fi
 
 
+if [ ! -f "/usr/bin/serf" ] ; then
+    wget https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip
+    unzip 0.5.0_linux_amd64.zip
+    mv ./serf /usr/bin/serf
+    chmod +x /usr/bin/serf
+fi
