@@ -1,4 +1,4 @@
-# fibambassador
+# webapp
 #
 # VERSION       1
 
@@ -24,9 +24,8 @@ RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD serf_member_join.sh /usr/local/src/fibambassador/
-ADD serf_member_leave.sh /usr/local/src/fibambassador/
-RUN chmod +x /usr/local/src/fibambassador/serf_member_join.sh
-RUN chmod +x /usr/local/src/fibambassador/serf_member_leave.sh
+ADD webapp.py /usr/local/src/webapp/
+ADD startFlask.sh /usr/local/src/webapp/
+RUN chmod +x /usr/local/src/webapp/startFlask.sh
 
 CMD ["/usr/bin/supervisord"]

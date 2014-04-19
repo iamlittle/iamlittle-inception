@@ -1,4 +1,4 @@
-# fibConsumer
+# ambassador
 #
 # VERSION       1
 
@@ -23,12 +23,10 @@ RUN chmod +x /usr/bin/serf
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
 
-RUN mkdir /usr/local/src/fibconsumer
-WORKDIR /usr/local/src/fibconsumer
-
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD fibconsumer.py /usr/local/src/fibconsumer/
-ADD startFlask.sh /usr/local/src/fibconsumer/
-RUN chmod +x /usr/local/src/fibconsumer/startFlask.sh
+ADD serf_member_join.sh /usr/local/src/ambassador/
+ADD serf_member_leave.sh /usr/local/src/ambassador/
+RUN chmod +x /usr/local/src/ambassador/serf_member_join.sh
+RUN chmod +x /usr/local/src/ambassador/serf_member_leave.sh
 
 CMD ["/usr/bin/supervisord"]
