@@ -1,12 +1,17 @@
-fibservice:
-  build: ./fibservice/
+webservice:
+  build: ./webservice/
   expose:
     - "5001"
-fibconsumer:
-  build: ./fibconsumer/
-  expose:
-    - "5000"
+  links:
+    - ambassador
+webapp:
+  build: ./webapp/
   ports:
     - "80:5000"
   links:
-    - fibservice:fib
+    - ambassador
+ambassador:
+  build: ./ambassador/
+  ports:
+    - "7946"
+    - "7373"

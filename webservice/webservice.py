@@ -1,12 +1,9 @@
 from flask import Flask
 from flask import jsonify
 
-from opalytics_www_utils.authentication import requires_auth
-
 app = Flask(__name__)
 
 @app.route("/fib", methods = ['GET'])
-#@requires_auth
 def fib():
     resp = jsonify({"value" : "%s" % __dumbFib()})
     return resp
