@@ -9,7 +9,6 @@ fibconsumer:
   ports:
     - "80:5000"
   links:
-    - fibservice:fib
     - fibambassador
 fibambassador:
   build: ./fibambassador/
