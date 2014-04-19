@@ -17,14 +17,13 @@ Please ensure that no service is operating on port 80 of your local machine, e.g
  1. cd into the fibDemo directory.
  1. Type `vagrant up`. This will download and provision an Ubuntu based virtual machine. It may take a while the first time through.
  1. Type `vagrant ssh`. This will give you a console for your newly minted vm.
- 1. Type `/vagrant/build.sh`. This will download a base Docker image and construct two new images from it. It may take a while the first time through.
- 1. Type `/vagrant/start.sh`. This will start the two Docker containers. The system should be ready two go.
+ 1. Type `fig up`. This will download a base Docker image and construct two new images from it. It may take a while the first time through.
  1. Open a browser and visit localhost.
 
 
 ### Shutting down
 
- 1. Type `/vagrant/stop.sh` This will shutdown the Docker system.
+ 1. Type `Ctrl - C` This will shutdown the Docker system.
  1. Type `exit` This will exit from the Vagrant ssh session.
  1. Type `vagrant halt` to shutdown the Vagrant machine. --or-- Type `vagrant destroy` to remove the vagrant instance from your machine.
  
