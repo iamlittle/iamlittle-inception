@@ -27,6 +27,8 @@ RUN mkdir /usr/local/src/fibconsumer
 WORKDIR /usr/local/src/fibconsumer
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD fibConsumer.py /usr/local/src/fibconsumer/
+ADD fibconsumer.py /usr/local/src/fibconsumer/
+ADD startFlask.sh /usr/local/src/fibconsumer/
+RUN chmod +x /usr/local/src/fibconsumer/startFlask.sh
 
 CMD ["/usr/bin/supervisord"]

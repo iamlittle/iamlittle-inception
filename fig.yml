@@ -2,11 +2,17 @@ fibservice:
   build: ./fibservice/
   expose:
     - "5001"
+  links:
+    - fibambassador
 fibconsumer:
   build: ./fibconsumer/
-  expose:
-    - "5000"
   ports:
     - "80:5000"
   links:
     - fibservice:fib
+    - fibambassador
+fibambassador:
+  build: ./fibambassador/
+  ports:
+    - "7946"
+    - "7373"
