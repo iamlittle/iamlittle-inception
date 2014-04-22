@@ -1,4 +1,4 @@
-# ambassador
+# servicelocator
 #
 # VERSION       1
 
@@ -24,9 +24,9 @@ RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD serf_member_join.sh /usr/local/src/ambassador/
-ADD serf_member_leave.sh /usr/local/src/ambassador/
-RUN chmod +x /usr/local/src/ambassador/serf_member_join.sh
-RUN chmod +x /usr/local/src/ambassador/serf_member_leave.sh
+ADD serf_member_join.sh /usr/local/src/servicelocator/
+ADD serf_member_leave.sh /usr/local/src/servicelocator/
+RUN chmod +x /usr/local/src/servicelocator/serf_member_join.sh
+RUN chmod +x /usr/local/src/servicelocator/serf_member_leave.sh
 
 CMD ["/usr/bin/supervisord"]

@@ -1,17 +1,15 @@
 webservice:
   build: ./webservice/
-  expose:
-    - "5001"
-  links:
-    - ambassador
+  ports:
+    - "5001:5001"
+    - "7946:7946"
+    - "7373:7373"
 webapp:
   build: ./webapp/
   ports:
     - "80:5000"
-  links:
-    - ambassador
-ambassador:
-  build: ./ambassador/
+servicelocator:
+  build: ./servicelocator/
   ports:
-    - "7946"
-    - "7373"
+    - "7946:7946"
+    - "7373:7373"

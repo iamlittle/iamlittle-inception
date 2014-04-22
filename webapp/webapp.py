@@ -11,7 +11,7 @@ def index():
     fibip = os.popen("/usr/bin/serf members -tag role=webservice | awk {'print $2'} | cut -d':' -f1")
     fibipstr = fibip.read()
     url = 'http://%s:5001/fib' % fibipstr.rstrip().strip()
-    sys.stderr.write('spam\n')
+    sys.stderr.write(url)
     response = urllib2.urlopen(url)
     html = response.read()
     return "Hello from webapp! fibService says %s" % html
