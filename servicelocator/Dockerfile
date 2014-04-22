@@ -11,22 +11,19 @@ MAINTAINER Aaron Little alittle@opalytics.com
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 
+# install utilities
 RUN apt-get install -y curl
-RUN apt-get install -y unzip
-RUN apt-get install -y wget
+RUN apt-get install -y nmap
+RUN apt-get install -y netstat-nat
 
-RUN wget https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip
-RUN unzip 0.5.0_linux_amd64.zip
-RUN mv ./serf /usr/bin/serf
-RUN chmod +x /usr/bin/serf
+# install etcd
+ADD etcd /usr/bin/etcd
 
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
-
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD serf_member_join.sh /usr/local/src/servicelocator/
-ADD serf_member_leave.sh /usr/local/src/servicelocator/
-RUN chmod +x /usr/local/src/servicelocator/serf_member_join.sh
-RUN chmod +x /usr/local/src/servicelocator/serf_member_leave.sh
+
+ADD startEtcd.sh /usr/local/src/servicelocator/
+RUN chmod +x /usr/local/src/servicelocator/startEtcd.sh
 
 CMD ["/usr/bin/supervisord"]

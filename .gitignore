@@ -1,2 +1,6 @@
 .vagrant*
 *.pyc
+servicelocator/etcd
+webservice/etcd
+webapp/etcd
+*.etcd
