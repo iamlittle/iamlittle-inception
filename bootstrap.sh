@@ -10,7 +10,10 @@ apt-get install -y lxc-docker
 
 # add vagrant user to docker group
 usermod -aG docker vagrant
+
 apt-get install -y unzip
+apt-get install -y nmap
+
 
 if [ ! -f "/usr/bin/fig" ] ; then
     wget https://github.com/orchardup/fig/releases/download/0.3.2/linux 
@@ -18,10 +21,20 @@ if [ ! -f "/usr/bin/fig" ] ; then
     chmod +x /usr/bin/fig
 fi
 
+if [ ! -d "/usr/local/go" ] ; then
+    wget https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz
+    tar -C /usr/local -xzf go1.2.1.linux-amd64.tar.gz
+    echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+    rm -rf go1.2.1.linux-amd64.tar.gz
+fi
 
-if [ ! -f "/usr/bin/serf" ] ; then
-    wget https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip
-    unzip 0.5.0_linux_amd64.zip
-    mv ./serf /usr/bin/serf
-    chmod +x /usr/bin/serf
+if [ ! -d "/home/vagrant/etcd" ] ; then
+    git clone https://github.com/coreos/etcd
+    . /etc/profile
+    cd etcd
+    ./build
+    cd ../
+    cp /home/vagrant/etcd/bin/etcd /vagrant/servicelocator/etcd
+    cp /home/vagrant/etcd/bin/etcd /vagrant/webservice/etcd
+    cp /home/vagrant/etcd/bin/etcd /vagrant/webapp/etcd
 fi

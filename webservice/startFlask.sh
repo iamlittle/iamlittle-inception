@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+#sleep to allow the master node to get setup
 sleep 3
 
-serf join 192.168.76.101:7946
+etcd -peer-addr ${PUBLIC_IP}:${SERVER_PORT} -addr ${PUBLIC_IP}:${CLIENT_PORT} -name webservice -peers ${MASTER_IP}:${SERVER_PORT}
 
 python /usr/local/src/webservice/webservice.py
