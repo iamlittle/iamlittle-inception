@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-serf join $AMBASSADOR_1_PORT_7946_TCP_ADDR:$AMBASSADOR_1_PORT_7946_TCP_PORT
+sleep 3
+
+serf join 192.168.76.101:7946
 
 python /usr/local/src/webservice/webservice.py
