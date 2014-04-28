@@ -17,26 +17,15 @@ apt-get install -y python-pip
 
 pip install requests
 
-if [ ! -f "/usr/bin/fig" ] ; then
-    wget https://github.com/orchardup/fig/releases/download/0.3.2/linux 
-    mv ./linux /usr/bin/fig
-    chmod +x /usr/bin/fig
-fi
+# if [ ! -d "/usr/local/go" ] ; then
+#     wget https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz
+#     tar -C /usr/local -xzf go1.2.1.linux-amd64.tar.gz
+#     echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+#     rm -rf go1.2.1.linux-amd64.tar.gz
+# fi
 
-if [ ! -d "/usr/local/go" ] ; then
-    wget https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz
-    tar -C /usr/local -xzf go1.2.1.linux-amd64.tar.gz
-    echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
-    rm -rf go1.2.1.linux-amd64.tar.gz
-fi
-
-if [ ! -d "/home/vagrant/etcd" ] ; then
-    git clone https://github.com/coreos/etcd
-    . /etc/profile
-    cd etcd
-    ./build
-    cd ../
-    cp /home/vagrant/etcd/bin/etcd /vagrant/servicelocator/etcd
-    cp /home/vagrant/etcd/bin/etcd /vagrant/webservice/etcd
-    cp /home/vagrant/etcd/bin/etcd /vagrant/webapp/etcd
+if [ ! -d "/usr/local/bin/etcd" ] ; then
+    wget https://github.com/coreos/etcd/releases/download/v0.3.0/etcd-v0.3.0-linux-amd64.tar.gz
+    tar -xzvf etcd-v0.3.0-linux-amd64.tar.gz
+    cp etcd-v0.3.0-linux-amd64/etcd /usr/local/bin/
 fi
