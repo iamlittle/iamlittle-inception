@@ -3,7 +3,7 @@ import requests
 from opalytils.logutils import log
 
 def is_etcd_up():
-    nmap_res = os.popen("nmap localhost | grep 4001")
+    nmap_res = os.popen("nmap localhost | grep %s" % client_port())
     etcd_up = len(nmap_res.read()) > 0
     log("etcd_up - %s" % etcd_up)
     return etcd_up
