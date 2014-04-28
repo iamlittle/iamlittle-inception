@@ -13,7 +13,9 @@ usermod -aG docker vagrant
 
 apt-get install -y unzip
 apt-get install -y nmap
+apt-get install -y python-pip
 
+pip install requests
 
 if [ ! -f "/usr/bin/fig" ] ; then
     wget https://github.com/orchardup/fig/releases/download/0.3.2/linux 
