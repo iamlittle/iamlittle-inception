@@ -1,7 +1,7 @@
 MASTER_IP = 192.168.76.101
 
 build:
-	docker build --tag=iamlittle/base opalytils/
+	docker build --tag=iamlittle/base utils/
 	docker build --tag=webservice webservice/
 	docker build --tag=webapp webapp/
 	docker build --tag=servicelocator servicelocator/

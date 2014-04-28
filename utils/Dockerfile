@@ -12,6 +12,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt
 RUN apt-get update
 
 # install utilities
+RUN apt-get install -y wget
 RUN apt-get install -y curl
 RUN apt-get install -y nmap
 RUN apt-get install -y netstat-nat
@@ -21,7 +22,10 @@ RUN apt-get install -y python-pip
 RUN pip install requests
 
 # install etcd
-ADD etcd /usr/bin/etcd
+RUN wget https://github.com/coreos/etcd/releases/download/v0.3.0/etcd-v0.3.0-linux-amd64.tar.gz
+RUN tar -xzvf etcd-v0.3.0-linux-amd64.tar.gz
+RUN cp etcd-v0.3.0-linux-amd64/etcd /usr/bin/
+RUN rm -rf ./etcd-v0.3.0*    
 
 # install supervisor
 RUN apt-get install -y supervisor
