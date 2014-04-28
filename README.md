@@ -31,10 +31,10 @@ Please ensure that no service is operating on port 80 of your local machine.
  1. cd into the inception directory.
  1. Type `vagrant up`. This will download and provision a Ubuntu based virtual machine. It may take a while the first time through.
  1. The following steps need to be completed from three separate consoles to simulate a multihost environment. Each console will pertain to a `MACHINE_NAME` belonging to set `servicelocator, webapp, or webservice`
-  a. Type `vagrant ssh $MACHINE_NAME` where MACHINE_NAME is each of `servicelocator, webapp, or webservice`. This will give you a console for your newly minted vm.
-  a. cd into `/vagrant`
-  a. Type `make build`. This will download a base Docker image and construct four new images from it. The first is a base image, the other three are for the deployed system components. It may take a while the first time through.
-  a. Type `make run$MACHINE_NAME`. This will start a Docker container for `MACHINE_NAME` in the current vagrant machine. The system should be ready two go.
+  1. Type `vagrant ssh $MACHINE_NAME` where MACHINE_NAME is each of `servicelocator, webapp, or webservice`. This will give you a console for your newly minted vm.
+  1. cd into `/vagrant`
+  1. Type `make build`. This will download a base Docker image and construct four new images from it. The first is a base image, the other three are for the deployed system components. It may take a while the first time through.
+  1. Type `make run$MACHINE_NAME`. This will start a Docker container for `MACHINE_NAME` in the current vagrant machine. The system should be ready two go.
  1. After all three containers have been initialized, open a browser and visit localhost.
 
 
